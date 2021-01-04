@@ -79,6 +79,8 @@ function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
         if (head.x == arr[i].x && head.y == arr[i].y) {
             clearInterval(menu);
+            //document.location.reload();
+            alert("You lose");
         };
 
     };
@@ -108,26 +110,36 @@ function drawMenu() {
     if (mode == 0) {
         ctx.drawImage(menuImg, 0, 0);
         ctx.drawImage(snakeGameButtonImg, 152, 60);
-        //ctx.drawImage(playButtonImg, 152, 120);
-        //ctx.drawImage(instructionsButtonImg, 152, 180);
-        //ctx.drawImage(creditsButtonImg, 152, 240);
+        ctx.drawImage(playButtonImg, 152, 120);
+        ctx.drawImage(instructionsButtonImg, 152, 180);
+        ctx.drawImage(creditsButtonImg, 152, 240);
+
+        //ctx.fillStyle = "white";
+        //ctx.font = "32px Arial";
+        //ctx.fillText("Press Enter", 200, 140);
 
     } else {
         drawGame()
     }
 }
 
-window.addEventListener("keypress", handle, false);
+//playButtonImg.addEventListener("click", handle, false);
 
-function handle(event) {
-    if (event.keyCode === 13) {
-        alert("Enter was pressed was presses");
-        mode++
-    }
-}
+//function handle(event) {
+//    if (event.click === ctx.playButtonImg) {
+//        alert("Enter was pressed was presses");
+//        mode++
+//    }
+//}
+
+var img = document.getElementById("photo");
+ctx.drawImage(img, 100, 100);
+document.getElementById("photo").addEventListener("click", function () { mode++ }, false);
 
 
-let menu = setInterval(drawMenu, 100)
+
+let speed = (100 - (score * 10))
+let menu = setInterval(drawMenu, speed)
 
 
 
@@ -183,8 +195,9 @@ function drawGame() {
 
     if (snakeX < box || snakeX > box * 17
         || snakeY < 3 * box || snakeY > box * 17) {
-        document.location.reload()
-        alert("You lose")
+        //document.location.reload()
+        //alert("You lose")
+        clearInterval(menu)
 
     }
 
