@@ -23,14 +23,6 @@ foodImg.src = "iconfinder_Apple_2137818.png";
 let snakeHeadImgUp = new Image();
 snakeHeadImgUp.src = "SnakeheadUp.png";
 
-let snakeHeadImgDown = new Image();
-snakeHeadImgDown.src = "SnakeheadDown.png";
-
-let snakeHeadImgRight = new Image();
-snakeHeadImgRight.src = "SnakeheadRight.png";
-
-let snakeHeadImgLeft = new Image();
-snakeHeadImgLeft.src = "SnakeheadLeft.png";
 
 
 
@@ -75,16 +67,16 @@ document.addEventListener("keydown", direction);
 let dir = "none";
 
 
-    function direction(event) {
-        if (event.keyCode == 37 && dir != "right")
-            dir = "left";
-        else if (event.keyCode == 38 && dir != "down")
-            dir = "up";
-        else if (event.keyCode == 39 && dir != "left")
-            dir = "right";
-        else if (event.keyCode == 40 && dir != "up")
-            dir = "down";
-    }
+function direction(event) {
+    if (event.keyCode == 37 && dir != "right")
+        dir = "left";
+    else if (event.keyCode == 38 && dir != "down")
+        dir = "up";
+    else if (event.keyCode == 39 && dir != "left")
+        dir = "right";
+    else if (event.keyCode == 40 && dir != "up")
+        dir = "down";
+}
 
 
 function eatTail(head, arr) {
@@ -94,14 +86,14 @@ function eatTail(head, arr) {
     };
 };
 
-//function rotateAndPaintImage(ctx, image, angleInDeg, positionX, positionY) {
-//    ctx.save();
-//    ctx.translate(positionX + 16, positionY + 16);
-//    ctx.rotate(angleInDeg * Math.PI / 180);
-//    ctx.translate(-16, -16);
-//    ctx.drawImage(image, 0, 0);
-//    ctx.restore();
-//};
+function rotateAndPaintImage(ctx, image, angleInDeg, positionX, positionY) {
+    ctx.save();
+    ctx.translate(positionX + 16, positionY + 16);
+    ctx.rotate(angleInDeg * Math.PI / 180);
+    ctx.translate(-16, -16);
+    ctx.drawImage(image, 0, 0);
+    ctx.restore();
+};
 
 
 //Drawing of menu
@@ -115,34 +107,15 @@ function clear() {
 
 function drawMenu() {
     clear();
-    if (mode == 0) {
-        //ctx.drawImage(menuImg, 0, 0);
-        //ctx.drawImage(snakeGameButtonImg, 152, 60);
-        //ctx.drawImage(playButtonImg, 152, 120);
-        //ctx.drawImage(instructionsButtonImg, 152, 180);
-        //ctx.drawImage(creditsButtonImg, 152, 240);
-
-        //ctx.fillStyle = "white";
-        //ctx.font = "32px Arial";
-        //ctx.fillText("Press Enter", 200, 140);
-
-    } else {
+    if (mode == 1) {
         drawGame()
-    }
-}
 
-//playButtonImg.addEventListener("click", handle, false);
+    };
+};
 
-//function handle(event) {
-//    if (event.click === ctx.playButtonImg) {
-//        alert("Enter was pressed was presses");
-//        mode++
-//    }
-//}
-
-var imgPlay = document.getElementById("Play");
-ctx.drawImage(Play, 0, 0);
 document.getElementById("Play").addEventListener("click", function () { mode = 1 }, false);
+document.getElementById("Instruct").addEventListener("click", function () { alert("Use the arrow keys to move the \"snake\" around the field.") }, false);
+document.getElementById("Credit").addEventListener("click", function () { alert("Made by Sergey." + "\n" + "\"Snake game\", writen in; js, html and css." + "\n"  + "Information about the collecting the game was taken from various auxiliary sites.") }, false);
 
 
 
@@ -165,21 +138,21 @@ function drawGame() {
 
         if (i == 0) {
             if (dir == "up" || dir == "none") {
-                //rotateAndPaintImage(ctx, snakeHeadImgUp, 0, snake[i].x, snake[i].y);
-                ctx.drawImage(snakeHeadImgUp, snake[i].x, snake[i].y)
+                rotateAndPaintImage(ctx, snakeHeadImgUp, 0, snake[i].x, snake[i].y);
+
             }
             else if (dir == "down") {
-                //rotateAndPaintImage(ctx, snakeHeadImgUp, 180, snake[i].x, snake[i].y);
-                ctx.drawImage(snakeHeadImgDown, snake[i].x, snake[i].y)
+                rotateAndPaintImage(ctx, snakeHeadImgUp, 180, snake[i].x, snake[i].y);
+
             }
 
             else if (dir == "left") {
-                //rotateAndPaintImage(ctx, snakeHeadImgUp, -90, snake[i].x, snake[i].y);
-                ctx.drawImage(snakeHeadImgLeft, snake[i].x, snake[i].y)
+                rotateAndPaintImage(ctx, snakeHeadImgUp, -90, snake[i].x, snake[i].y);
+
             }
             else if (dir == "right") {
-                //rotateAndPaintImage(ctx, snakeHeadImgUp, 90, snake[i].x, snake[i].y);
-                ctx.drawImage(snakeHeadImgRight, snake[i].x, snake[i].y)
+                rotateAndPaintImage(ctx, snakeHeadImgUp, 90, snake[i].x, snake[i].y);
+
             }
 
         }
@@ -198,7 +171,7 @@ function drawGame() {
 
     if (snakeX == food.x && snakeY == food.y) {
         score++
-        
+
         food = {
             x: Math.floor((Math.random() * 17 + 1)) * box,
             y: Math.floor((Math.random() * 15 + 3)) * box

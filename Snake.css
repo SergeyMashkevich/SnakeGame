@@ -11,3 +11,18 @@ background-color: #414c5f;
 margin: 0;
 }
 
+#Play:hover {
+    border: solid;
+    border-radius: 20px;
+}
+
+#Credit:hover {
+    border: solid;
+    border-radius: 20px;
+}
+
+#Instruct:hover {
+    border: solid;
+    border-radius: 20px;
+}
+
