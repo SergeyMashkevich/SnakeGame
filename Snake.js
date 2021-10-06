@@ -131,8 +131,8 @@ function drawGame() {
         snake.pop();
     };
 
-    if (snakeX < box || snakeX > box * 17
-        || snakeY < 3 * box || snakeY > box * 17) {
+    if (snakeX < box - 1 || snakeX > box * 17 + 1
+        || snakeY < 3 * box - 1 || snakeY > box * 17 + 1) {
         //clearInterval(game);
         document.location.reload()
         alert("You lose")
