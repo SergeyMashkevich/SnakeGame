@@ -57,7 +57,7 @@ function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
         if (head.x == arr[i].x && head.y == arr[i].y) {
             clearInterval(game);
-            alert("You lose");
+            alert("You lost, try to avoid hitting the body with the head!");
             document.location.reload();
         }; 
     };
@@ -135,7 +135,7 @@ function drawGame() {
         || snakeY < 3 * box - 1 || snakeY > box * 17 + 1) {
         //clearInterval(game);
         document.location.reload()
-        alert("You lose")
+        alert("You lost, try not to hit the walls directly with the head!")
 
     }
 
