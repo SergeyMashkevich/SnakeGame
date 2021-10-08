@@ -131,8 +131,8 @@ function drawGame() {
         snake.pop();
     };
 
-    if (snakeX < box - 1 || snakeX > box * 17 + 1
-        || snakeY < 3 * box - 1 || snakeY > box * 17 + 1) {
+    if (snakeX < box || snakeX > box * 17
+        || snakeY < 3 * box || snakeY > box * 17) {
         //clearInterval(game);
         document.location.reload()
         alert("You lost, try not to hit the walls directly with the head!")
