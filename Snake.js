@@ -1,4 +1,4 @@
-//Import of images
+﻿//Import of images
 
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -73,14 +73,76 @@ function rotateAndPaintImage(ctx, image, angleInDeg, positionX, positionY) {
 };
 
 //Menu
+var i = 0;
 let game;
-document.getElementById("Play").addEventListener("click", function () { game = setInterval(drawGame, 100); }, false);
+document.getElementById("Play").addEventListener("click", function () {
+    speedButtons();
+    i++;
+    game = setInterval(drawGame, intervalSpeed);
+}, false);
 document.getElementById("Instruct").addEventListener("click", function () { alert("Use the arrow keys to move the \"snake\" around the field.") }, false);
 document.getElementById("Credit").addEventListener("click", function () { alert("Made by Sergey." + "\n" + "\"Snake game\", writen in; js, html and css." + "\n"  + "Information about the collecting the game was taken from various auxiliary sites.") }, false);
 
 //Drawing of Game
 
+//
+var intervalSpeed = 100;
+function speedButtons() {
+
+    
+    
+    var value;
+    if (i == 0) {
+    value = true
+    };
+
+    /*var value = true;*/ //условие появления кнопки, true - появиться, false - нет 
+    var btnSpeedUp = document.createElement('button');//создаём нашу кнопку
+
+    var textInbtnSpeedUp = document.createTextNode('speed Up');//создаем текст для кнопки
+
+    btnSpeedUp.appendChild(textInbtnSpeedUp);//добавляем текст в кнопку
+
+    if (value) {//в зависимости от условия добавляем кнопку в документ
+        document.body.appendChild(btnSpeedUp);
+       
+        
+    }
+
+    btnSpeedUp.onclick = function () {
+        clearInterval(game);
+        game = setInterval(drawGame, intervalSpeed -= 10);
+    };
+    
+    //
+    
+    //
+
+    /*var value = true*/ //условие появления кнопки, true - появиться, false - нет 
+    var btnSpeedDown = document.createElement('button');//создаём нашу кнопку
+
+    var textInbtnSpeedDown = document.createTextNode('speed Down');//создаем текст для кнопки
+
+    btnSpeedDown.appendChild(textInbtnSpeedDown);//добавляем текст в кнопку
+
+    if (value) {//в зависимости от условия добавляем кнопку в документ
+        document.body.appendChild(btnSpeedDown);
+    }
+    btnSpeedDown.onclick = function () {
+        clearInterval(game);
+        game = setInterval(drawGame, intervalSpeed += 10)
+    };
+} 
+//
+
+
 function drawGame() {
+
+    //
+    
+//
+
+
     ctx.drawImage(ground, 0, 0);
 
     ctx.drawImage(foodImg, food.x, food.y);
@@ -116,12 +178,15 @@ function drawGame() {
     ctx.fillStyle = "white";
     ctx.font = "32px Arial";
     ctx.fillText('food ' + '= ' + score, box * 2, box * 1.6);
+    ctx.fillText('speed ' + '= ' + intervalSpeed, box * 6, box * 1.6);
+
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
     if (snakeX == food.x && snakeY == food.y) {
         score++
+        
 
         food = {
             x: Math.floor((Math.random() * 17 + 1)) * box,
