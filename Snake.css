@@ -4,17 +4,19 @@ margin: 0 auto;
 }
 
 body {
-background-color: #414c5f;
+    background-color: #5F5441;
 }
 
 #dd {
 margin: 0;
 }
 
+
 #Play:hover {
     border: solid;
     border-radius: 20px;
 }
+
 
 #Credit:hover {
     border: solid;

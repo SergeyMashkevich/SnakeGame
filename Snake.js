@@ -63,11 +63,13 @@ function eatTail(head, arr) {
 
             //ctx.drawImage(menuImg, 0, 0);
 
+            ctx.drawImage(menuImg, 0, 0);
             ctx.font = "20px Arial";
             ctx.fillStyle = "black";
-            ctx.fillText("You lost, try to avoid hitting the body with the head!", 2 * box, 10 * box);
-
-
+            ctx.font = "30px Arial";
+            ctx.fillText("You lost.", 8 * box, 6 * box);
+            ctx.fillText("Try to avoid hitting the body with the head!", 0.5 * box, 7 * box);
+            ctx.fillText("You have collected " + score + " apples.", 3.5 * box, 8 * box);
 
             //alert("You lost, try to avoid hitting the body with the head!");
             //document.location.reload();
@@ -87,68 +89,88 @@ function rotateAndPaintImage(ctx, image, angleInDeg, positionX, positionY) {
 //Menu
 var i = 0;
 let game;
-document.getElementById("Play").addEventListener("click", function () {
-    speedButtons();
-    i++;
-    game = setInterval(drawGame, intervalSpeed);
-}, false);
-document.getElementById("Instruct").addEventListener("click", function () { alert("Use the arrow keys to move the \"snake\" around the field.") }, false);
-document.getElementById("Credit").addEventListener("click", function () { alert("Made by Sergey." + "\n" + "\"Snake game\", writen in; js, html and css." + "\n"  + "Information about the collecting the game was taken from various auxiliary sites.") }, false);
 
-//Drawing of Game
+
+    document.getElementById("Play").addEventListener("click", function () {
+        //document.location.reload();
+        //speedButtons();
+        //if (game == true) {
+        //    document.location.reload();
+
+        //} 
+        i++;
+        game = setInterval(drawGame, intervalSpeed);
+        this.remove();
+        document.getElementById("Instruct").remove();
+        document.getElementById("Credit").remove();
+        
+    }, false);
+    document.getElementById("Instruct").addEventListener("click", function () { alert("Use the arrow keys to move the \"snake\" around the field.") }, false);
+    document.getElementById("Credit").addEventListener("click", function () { alert("Made by Sergey." + "\n" + "\"Snake game\", writen in; js, html and css." + "\n" + "Information about the collecting the game was taken from various auxiliary sites.") }, false);
+    //Drawing of Game
+
+    
+
+
 
 //
 var intervalSpeed = 100;
 var speed = 1;
-function speedButtons() {
+//function speedButtons() {
 
     
     
-    var value;
-    if (i == 0) {
-    value = true
-    };
+//    var value;
+//    if (i == 0) {
+//    value = true
+//    };
 
-    /*var value = true;*/ //условие появления кнопки, true - появиться, false - нет 
-    var btnSpeedUp = document.createElement('button');//создаём нашу кнопку
+//    /*var value = true;*/ //условие появления кнопки, true - появиться, false - нет 
+//    var btnSpeedUp = document.createElement('button');//создаём нашу кнопку
 
-    var textInbtnSpeedUp = document.createTextNode('speed Up');//создаем текст для кнопки
+//    var textInbtnSpeedUp = document.createTextNode('speed Up');//создаем текст для кнопки
 
-    btnSpeedUp.appendChild(textInbtnSpeedUp);//добавляем текст в кнопку
+//    btnSpeedUp.appendChild(textInbtnSpeedUp);//добавляем текст в кнопку
 
-    if (value) {//в зависимости от условия добавляем кнопку в документ
-        document.body.appendChild(btnSpeedUp);
+//    if (value) {//в зависимости от условия добавляем кнопку в документ
+//        document.body.appendChild(btnSpeedUp);
        
         
-    }
+//    }
 
-    btnSpeedUp.onclick = function () {
-        clearInterval(game);
-        game = setInterval(drawGame, intervalSpeed -= 10);
-        speed += 1;
-    };
+//    btnSpeedUp.onclick = function () {
+//        clearInterval(game);
+//        game = setInterval(drawGame, intervalSpeed -= 10);
+//        speed += 1;
+//    };
+
     
-    //
+//    //
     
-    //
+//    //
 
-    /*var value = true*/ //условие появления кнопки, true - появиться, false - нет 
-    var btnSpeedDown = document.createElement('button');//создаём нашу кнопку
+//    /*var value = true*/ //условие появления кнопки, true - появиться, false - нет 
+//    var btnSpeedDown = document.createElement('button');//создаём нашу кнопку
 
-    var textInbtnSpeedDown = document.createTextNode('speed Down');//создаем текст для кнопки
+//    var textInbtnSpeedDown = document.createTextNode('speed Down');//создаем текст для кнопки
 
-    btnSpeedDown.appendChild(textInbtnSpeedDown);//добавляем текст в кнопку
+//    btnSpeedDown.appendChild(textInbtnSpeedDown);//добавляем текст в кнопку
 
-    if (value) {//в зависимости от условия добавляем кнопку в документ
-        document.body.appendChild(btnSpeedDown);
-    }
-    btnSpeedDown.onclick = function () {
-        clearInterval(game);
-        game = setInterval(drawGame, intervalSpeed += 10)
-        speed -= 1;
-    };
-} 
+//    if (value) {//в зависимости от условия добавляем кнопку в документ
+//        document.body.appendChild(btnSpeedDown);
+//    }
+//    btnSpeedDown.onclick = function () {
+//        clearInterval(game);
+//        game = setInterval(drawGame, intervalSpeed += 10)
+//        speed -= 1;
+//    };
+
+   
+//}; 
 //
+
+//
+
 
 
 function drawGame() {
@@ -193,7 +215,7 @@ function drawGame() {
     ctx.fillStyle = "white";
     ctx.font = "32px Arial";
     ctx.fillText('food ' + '= ' + score, box * 2, box * 1.6);
-    ctx.fillText('speed ' + '= ' + speed, box * 6, box * 1.6);
+    ctx.fillText('speed ' + '= ' + speed, box * 8, box * 1.6);
 
 
     let snakeX = snake[0].x;
@@ -201,6 +223,9 @@ function drawGame() {
 
     if (snakeX == food.x && snakeY == food.y) {
         score++
+        clearInterval(game);
+        game = setInterval(drawGame, intervalSpeed -= 1);
+        speed++;
         
 
         food = {
@@ -217,13 +242,17 @@ function drawGame() {
 
         clearInterval(game);
 
-        //ctx.drawImage(menuImg, 0, 0);
-
+        ctx.drawImage(menuImg, 0, 0);
         ctx.font = "20px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText("You lost. Try not to hit the walls directly with the head!", 2 * box, 10 * box);
+        ctx.font = "30px Arial";
+        ctx.fillText("You lost.", 8 * box, 6 * box);
+        ctx.fillText("Try not to hit the walls directly with the head!", 0.5 * box, 7 * box);
+        ctx.fillText("You have collected " + score + " apples.", 3.5 * box, 8 * box);
+
         
-      
+        
+        
 
         //alert("You lost, try not to hit the walls directly with the head!")
 
