@@ -14,17 +14,40 @@ margin: 0;
 
 #Play:hover {
     border: solid;
-    border-radius: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #414C5F;
+    
 }
 
 
 #Credit:hover {
     border: solid;
-    border-radius: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #414C5F;
 }
 
 #Instruct:hover {
     border: solid;
-    border-radius: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #414C5F;
 }
 
+#btnRestart {
+    font-size: 32px;
+    font-family: Arial;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 100px;
+    color: black;
+    background: #414C5F;
+}
+
+   

@@ -70,7 +70,23 @@ function eatTail(head, arr) {
             ctx.fillText("You lost.", 8 * box, 6 * box);
             ctx.fillText("Try to avoid hitting the body with the head!", 0.5 * box, 7 * box);
             ctx.fillText("You have collected " + score + " apples.", 3.5 * box, 8 * box);
+            //
+            var value = true //условие появления кнопки, true - появиться, false - нет
+            var btnRestart = document.createElement('button');//создаём нашу кнопку
+            btnRestart.id = "btnRestart";
+            var textInbtnRestart = document.createTextNode('Restart');//создаем текст для кнопки
 
+            btnRestart.appendChild(textInbtnRestart);//добавляем текст в кнопку
+
+            if (value) {//в зависимости от условия добавляем кнопку в документ
+                document.body.appendChild(btnRestart);
+            }
+            btnRestart.onclick = function () {
+                document.location.reload();
+            };
+
+
+            //
             //alert("You lost, try to avoid hitting the body with the head!");
             //document.location.reload();
         }; 
@@ -125,7 +141,7 @@ var speed = 1;
 //    value = true
 //    };
 
-//    /*var value = true;*/ //условие появления кнопки, true - появиться, false - нет 
+//    /*var value = true; //условие появления кнопки, true - появиться, false - нет 
 //    var btnSpeedUp = document.createElement('button');//создаём нашу кнопку
 
 //    var textInbtnSpeedUp = document.createTextNode('speed Up');//создаем текст для кнопки
@@ -250,7 +266,27 @@ function drawGame() {
         ctx.fillText("Try not to hit the walls directly with the head!", 0.5 * box, 7 * box);
         ctx.fillText("You have collected " + score + " apples.", 3.5 * box, 8 * box);
 
-        
+        //
+
+
+        ///////////
+
+        //
+        var value = true //условие появления кнопки, true - появиться, false - нет
+        var btnRestart = document.createElement('button');//создаём нашу кнопку
+        btnRestart.id = "btnRestart";
+        var textInbtnRestart = document.createTextNode('Restart');//создаем текст для кнопки
+
+        btnRestart.appendChild(textInbtnRestart);//добавляем текст в кнопку
+
+        if (value) {//в зависимости от условия добавляем кнопку в документ
+            document.body.appendChild(btnRestart);
+        }
+        btnRestart.onclick = function () {
+            document.location.reload();
+        };
+
+        //
         
         
 
